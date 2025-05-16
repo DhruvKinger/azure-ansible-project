@@ -1,4 +1,4 @@
-- hosts: aws
+- hosts: azure
   become: true
   tasks:
     - name: Install firewalld if not already installed
@@ -14,7 +14,7 @@
       ignore_errors: true
 
     - name: Open ports in firewalld
-      firewalld:
+      ansible.posix.firewalld:
         port: "{{ item }}/tcp"
         permanent: true
         state: enabled
